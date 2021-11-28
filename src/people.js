@@ -1,0 +1,13 @@
+export let people = [{
+    name: "James",
+    age: 35,
+    hairColor: "brown",
+}, {
+    name: "Kenzie",
+    age: 28,
+    hairColor: "red",
+}, {
+    name: "Matt",
+    age: 29,
+    hairColor: "brown",
+}]
