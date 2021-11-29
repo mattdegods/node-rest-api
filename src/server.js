@@ -1,13 +1,13 @@
 import express from 'express';
-import bodyParser  from 'body-parser';
+import bodyParser from 'body-parser';
 // allows us to use async from filesystem package
 import { promises as fs } from 'fs';
 import { people } from './people';
 
 // initialize server with express
-let app = express();
+const app = express();
 
-// plugin that takes extra data from client and puts 
+// plugin that takes extra data from client and puts
 // it on the request arg of the POST endpoint
 app.use(bodyParser.json());
 
@@ -15,28 +15,28 @@ app.use(bodyParser.json());
 
 // 1, Hello endpoint (returns a string)
 app.get('/hello', (req, res) => {
-    res.send("Hello you!");
+    res.send('Hello you!');
 });
 
 // 2. People endpoint (returns array of people objects)
 app.get('/people', (req, res) => {
     res.json(people);
-})
+});
 
 // 3. Specific person endpoint (returns specific person object)
 app.get('/people/:name', (req, res) => {
     // obj destructuring
-    let { name } = req.params;
+    const { name } = req.params;
 
-    let person = people.find(x => x.name === name);
+    const person = people.find((x) => x.name === name);
 
     res.json(person);
 });
 
 // 4. File reader endpoint (read file and a return contents (async))
 app.get('/file-data', async (req, res) => {
-    let data = await fs.readFile(__dirname + '/people-data.json');
-    let people = JSON.parse(data);
+    const data = await fs.readFile(__dirname + '/people-data.json');
+    const people = JSON.parse(data);
 
     res.json(people);
 });
@@ -52,5 +52,5 @@ app.post('/people', (req, res) => {
 
 // listener functin on port 3000 (common port)
 app.listen(3000, () => {
-    console.log("Server successfully listening on Port 3000.")
-})
+    //console.log('Server successfully listening on Port 3000.');
+});
